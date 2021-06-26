@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+    postgis_volume:
+        name: posgis_volume
+        driver: local
+
+services:
+    postgres:
+        container_name: postgis
+        image: kartoza/postgis:9.6-2.4
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASS=postgres
+            - POSTGRES_DBNAME=gis
+        ports:
+            - 5432:5432
+        volumes:
+            - postgis_volume:/var/lib/postgresql/data
